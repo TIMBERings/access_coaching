@@ -3,4 +3,5 @@ class Post < ActiveRecord::Base
   has_many :comments
   has_many :videos
   has_one :user
+  acts_as_votable 
 end
