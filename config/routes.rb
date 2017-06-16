@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  resources :comments
+  resources :comments do
+  #->Prelang (voting/acts_as_votable)
+  member do
+    get "vote"
+  end
+end
+
 
   resources :posts do
   #->Prelang (voting/acts_as_votable)
