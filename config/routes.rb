@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :sports
+
   get 'landings/index'
 
   resources :videos
