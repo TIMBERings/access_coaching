@@ -5,4 +5,7 @@ class Comment < ActiveRecord::Base
   belongs_to :author, class_name: 'User'
   acts_as_votable
 
+  validates :author, presence: true
+  validates :content, presence: true
+
 end

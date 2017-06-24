@@ -9,6 +9,8 @@
 <% @post.comments.each do |comment| %>
   <%= render partial: 'comments/comment', locals: {comment: comment} %>
 <% end %>
+<h4>Add new comment</h4>
+<%= render 'comments/form' %>
 
 <div class="form-group">
   <%= link_to t('.back', :default => t("helpers.links.back")),

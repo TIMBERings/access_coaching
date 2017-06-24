@@ -38,6 +38,19 @@
   font-size: 1.5em;
 }
 
+a:link .vote-arrow,
+a:visited .vote-arrow,
+a:hover .vote-arrow,
+a:active .vote-arrow {
+    color:#333;
+}
+a:link .vote-arrow.voted-for,
+a:visited .vote-arrow.voted-for,
+a:hover .vote-arrow.voted-for,
+a:active .vote-arrow.voted-for {
+    color: $brand-warning;
+}
+
 @font-face {
   font-family: 'Glyphicons Halflings';
   src: url('/assets/glyphicons-halflings-regular.eot');
