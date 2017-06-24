@@ -14,9 +14,7 @@
 *= require_self
 */
 @import "bootstrap_configuration";
-
 @import "bootstrap-sprockets";
-
 @import "bootstrap";
 
 //->Prelang (ui_framework:twitter_bootstrap)
@@ -34,4 +32,14 @@
 //->Prelang (user_login:devise)
 .form-user {
   max-width: 450px;
+}
+
+.large-text {
+  font-size: 1.5em;
+}
+
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('/assets/glyphicons-halflings-regular.eot');
+  src: url('/assets/glyphicons-halflings-regular.eot?#iefix') format("embedded-opentype"), url('/assets/glyphicons-halflings-regular.woff') format("woff"), url('/assets/glyphicons-halflings-regular.ttf') format("truetype"), url('/assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format("svg");
 }

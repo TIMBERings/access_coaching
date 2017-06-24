@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
         :recoverable, :rememberable, :trackable, :validatable
   devise :omniauthable, omniauth_providers: [:facebook]
 
+  acts_as_voter
+
   #->Prelang (user_login/devise)
   belongs_to :post
   belongs_to :comment
@@ -27,5 +29,8 @@ class User < ActiveRecord::Base
                 password: Devise.friendly_token[0,20])
   end
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 
 end

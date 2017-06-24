@@ -1,0 +1,27 @@
+<div class='panel'>
+  <div class='panel-body'>
+    <%= @post.content %>
+  </div>
+  <div class='panel-footer'>
+    <div class='row'>
+      <div class='col-xs-6'>
+        <%= @post.author.full_name %>
+      </div>
+      <div class='col-xs-6 text-right'>
+        <%= link_to vote_post_path(@post, {direction: 'liked'}) do %>
+          <%= content_tag(:span, '', class: "glyphicon glyphicon-arrow-up #{((User.first.voted_for?(@post) && User.first.voted_as_when_voted_for(@post)) ? 'text-warning' : 'text-default')}", 'aria-hidden' => "true") %>
+        <% end %>
+        <strong class='large-text'><%= @post.total_votes %></strong>
+        <%= link_to vote_post_path(@post, {direction: 'disliked'}) do %>
+          <%= content_tag(:span, '', class: "glyphicon glyphicon-arrow-down #{((User.first.voted_for?(@post) && !User.first.voted_as_when_voted_for(@post)) ? 'text-warning' : 'text-default')}", 'aria-hidden' => "true") %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="fieldset">
+  <dl>
+      <dt class="label label-default">Is Public?</dt>
+      <dd><pre class="prettyprint"><%= @post.is_public %></pre></dd>
+  </dl>
+</div>

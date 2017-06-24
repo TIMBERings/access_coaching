@@ -2,11 +2,11 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.1.4'
+gem 'rails', '4.2.6'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
@@ -39,18 +39,7 @@ gem 'spring',        group: :development
 # gem 'debugger', group: [:development, :test]
 
 gem 'bundler'
-
-group :development, :test do
-  gem 'dotenv-rails'
-  gem 'rspec-rails'
-  gem 'factory_girl_rails'
-end
-
-group :development do
-  gem 'pry-rails'
-  gem 'better_errors'
-end
-
+gem 'glyphicons-rails'
 gem 'devise', github: 'plataformatec/devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
@@ -61,6 +50,20 @@ gem 'bootstrap-sass-extras'
 gem 'acts_as_votable', github: 'ryanto/acts_as_votable'
 gem 'validates_formatting_of'
 gem 'tzinfo-data'
+
+group :development, :test do
+  gem 'dotenv-rails'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'faker'
+  gem 'pry-byebug'
+end
+
+group :development do
+  gem 'pry-rails'
+  gem 'better_errors'
+  gem 'web-console'
+end
 
 group :test do
   gem 'shoulda-matchers'

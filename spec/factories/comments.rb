@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :comment do
-    post nil
-    content "MyString"
-    user nil
+    post
+    content { (0..1).map { "#{Faker::Lorem.paragraph(3)}"}.join("\n") }
+    author
   end
 end

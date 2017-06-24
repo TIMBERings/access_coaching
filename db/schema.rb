@@ -18,25 +18,25 @@ ActiveRecord::Schema.define(version: 20170617000756) do
 
   create_table "comments", force: true do |t|
     t.integer  "post_id"
-    t.string   "content"
-    t.integer  "user_id"
+    t.text     "content",    null: false
+    t.integer  "author_id",  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "comments", ["author_id"], name: "index_comments_on_author_id", using: :btree
   add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "posts", force: true do |t|
-    t.string   "content"
-    t.boolean  "is_public"
-    t.integer  "user_id"
+    t.text     "content",                    null: false
+    t.boolean  "is_public",  default: false
+    t.integer  "author_id",                  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "sport_id"
   end
 
-  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
+  add_index "posts", ["author_id"], name: "index_posts_on_author_id", using: :btree
 
   create_table "sports", force: true do |t|
     t.text     "name"
@@ -62,8 +62,8 @@ ActiveRecord::Schema.define(version: 20170617000756) do
     t.string   "provider"
     t.string   "uid"
     t.string   "name"
-    t.text     "first_name"
-    t.text     "last_name"
+    t.string   "first_name"
+    t.string   "last_name"
     t.date     "birth_date"
     t.integer  "post_id"
     t.integer  "comment_id"

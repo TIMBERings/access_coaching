@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :sport do
-    name "MyText"
+    name "Basketball"
   end
 end
