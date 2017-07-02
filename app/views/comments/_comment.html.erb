@@ -9,11 +9,11 @@
       </div>
       <div class='col-xs-6 text-right'>
         <%= link_to vote_comment_path(comment, {direction: 'liked'}) do %>
-          <%= content_tag(:span, '', class: "vote-arrow glyphicon glyphicon-arrow-up #{((User.first.voted_for?(comment) && User.first.voted_as_when_voted_for(comment)) ? 'voted-for' : '')}", 'aria-hidden' => "true") %>
+          <%= content_tag(:span, '', class: "vote-arrow glyphicon glyphicon-arrow-up #{'voted-for' if (User.first.voted_for?(comment) && User.first.voted_as_when_voted_for(comment))}", 'aria-hidden' => "true") %>
         <% end %>
         <strong class='large-text'><%= comment.total_votes %></strong>
         <%= link_to vote_comment_path(comment, {direction: 'disliked'}) do %>
-          <%= content_tag(:span, '', class: "vote-arrow glyphicon glyphicon-arrow-down #{((User.first.voted_for?(comment) && !User.first.voted_as_when_voted_for(comment)) ? 'voted-for' : '')}", 'aria-hidden' => "true") %>
+          <%= content_tag(:span, '', class: "vote-arrow glyphicon glyphicon-arrow-down #{'voted-for' if (User.first.voted_for?(comment) && !User.first.voted_as_when_voted_for(comment))}", 'aria-hidden' => "true") %>
         <% end %>
       </div>
     </div>

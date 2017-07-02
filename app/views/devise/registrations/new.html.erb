@@ -13,8 +13,12 @@
                       order: [:month, :day, :year],
                       label: "Date of birth"  %>
     <%= f.input :email, required: true %>
-    <%= f.input :password, autocomplete: "off", required: false %>
-    <%= f.input :password_confirmation, required: false %>
+    <%= f.input :password, autocomplete: "off", required: true %>
+    <%= f.input :password_confirmation, required: true %>
+    <label class='control-label'> Roles </label>
+    <%= f.collection_radio_buttons :role, [[:athlete, 'Athlete'] ,[:coach, 'Coach']], :first, :last, {:item_wrapper_class => 'radio'}%>
+    <label class='control-label'> Sports </label>
+    <%= f.collection_check_boxes :sport_ids, Sport.all, :id, :name, {:item_wrapper_class => 'checkbox'} %>
   </div>
 
   <div class="form-actions">

@@ -8,8 +8,18 @@ class User < ActiveRecord::Base
   acts_as_voter
 
   #->Prelang (user_login/devise)
-  belongs_to :post
-  belongs_to :comment
+  has_many :post, foreign_key: "author_id"
+  has_many :comment, foreign_key: "author_id"
+  has_many :sports_users
+  has_many :sports, through: :sports_users
+
+  ROLES = %i[admin athlete coach banned]
+
+  validates :birth_date, presence: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  validates :role, presence: true
+
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(provider: auth.provider, uid: auth.uid).first
 
@@ -33,4 +43,15 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
+  def admin?
+    role == 'admin'
+  end
+
+  def coach?
+    role == 'coach'
+  end
+
+  def athlete?
+    role == 'athlete'
+  end
 end
