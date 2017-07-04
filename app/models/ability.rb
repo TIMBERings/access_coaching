@@ -34,6 +34,8 @@ class Ability
       can :manage, :all
     elsif user.coach? || user.athlete?
       can :read, :all
+      can [:create, :update, :new], Post
+      can [:create, :update, :new], Comment
     end
   end
 end

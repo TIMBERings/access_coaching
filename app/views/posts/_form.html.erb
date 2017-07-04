@@ -1,22 +1,24 @@
-<%= form_for @post, :html => { :class => 'form-horizontal form-model' } do |f| %>
-  <div class="form-group">
-    <%= f.label :content, :class => 'control-label col-md-2' %>
-    <div class="col-md-10">
-      <%= f.text_area :content, rows: "15", :class => 'text-field form-control' %>
-    </div>
-  </div>
-  <div class="form-group">
-    <%= f.label :is_public, :class => 'control-label col-md-2' %>
-    <div class="col-md-10">
-      <%= f.check_box :is_public, :class => 'text-field form-control' %>
+<%= simple_form_for @post, :html => { :class => 'form-horizontal form-model' } do |f| %>
+  <%= f.error_notification %>
+  <%= hidden_field_tag('post[author_id]', current_user.id) %>
+  <div class="form-inputs">
+    <%= f.input :content %>
+    <%= f.input :is_public, label: 'Is this post public?', class: 'checkbox' %>
+    <div class='form-group'>
+      <%= f.label 'Video URLs' %>
+      <%= f.simple_fields_for 'videos[0]' do |v| %>
+        <%= v.input :url, label: false, multiple: true %>
+      <% end %>
+      <%= f.simple_fields_for 'videos[1]' do |v| %>
+        <%= v.input :url, label: false, multiple: true %>
+      <% end %>
     </div>
   </div>
 
-  <div class="form-group">
-    <div class='col-md-offset-2 col-md-10'>
-      <%= f.submit nil, :class => 'btn btn-primary' %>
-      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+
+  <div class='form-actions'>
+    <%= f.submit nil, :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                   posts_path, :class => 'btn btn-default' %>
-    </div>
   </div>
 <% end %>

@@ -1,4 +1,9 @@
-<div class='panel'>
+<div class='panel panel-default'>
+  <div class='panel-heading'>
+    <div class='panel-title'>
+      <%= @post.title %>
+    </div>
+  </div>
   <div class='panel-body'>
     <%= @post.content %>
   </div>
@@ -9,19 +14,35 @@
       </div>
       <div class='col-xs-6 text-right'>
         <%= link_to vote_post_path(@post, {direction: 'liked'}) do %>
-          <%= content_tag(:span, '', class: "vote-arrow glyphicon glyphicon-arrow-up #{'voted-for' if (User.first.voted_for?(@post) && User.first.voted_as_when_voted_for(@post))}", 'aria-hidden' => "true") %>
+          <%= content_tag(:span, '', class: "vote-arrow glyphicon glyphicon-arrow-up #{'voted-for' if (current_user.voted_for?(@post) && current_user.voted_as_when_voted_for(@post))}", 'aria-hidden' => "true") %>
         <% end %>
         <strong class='large-text'><%= @post.total_votes %></strong>
         <%= link_to vote_post_path(@post, {direction: 'disliked'}) do %>
-          <%= content_tag(:span, '', class: "vote-arrow glyphicon glyphicon-arrow-down #{'voted-for' if (User.first.voted_for?(@post) && !User.first.voted_as_when_voted_for(@post))}", 'aria-hidden' => "true") %>
+          <%= content_tag(:span, '', class: "vote-arrow glyphicon glyphicon-arrow-down #{'voted-for' if (current_user.voted_for?(@post) && !current_user.voted_as_when_voted_for(@post))}", 'aria-hidden' => "true") %>
         <% end %>
       </div>
     </div>
   </div>
 </div>
+<% if @post.videos.any? %>
+  <div class='row'>
+    <% if @post.videos.count == 2 %>
+      <div class='col-md-6 text-center'>
+        <iframe src='https://www.youtube.com/embed/<%= @post.videos[0].url %>?rel=0&autoplay=0' frameborder='0' allowfullscreen></iframe>
+      </div>
+      <div class='col-md-6 text-center'>
+        <iframe src='https://www.youtube.com/embed/<%= @post.videos[1].url %>?rel=0&autoplay=0' frameborder='0' allowfullscreen></iframe>
+      </div>
+    <% elsif @post.videos.count == 1 %>
+      <div class='text-center'>
+        <iframe src='https://www.youtube.com/embed/<%= @post.videos[0].url %>?rel=0&autoplay=0' frameborder='0' allowfullscreen></iframe>
+      </div>
+    <% end %>
+  </div>
+<% end %>
 <div class="fieldset">
   <dl>
-      <dt class="label label-default">Is Public?</dt>
-      <dd><pre class="prettyprint"><%= @post.is_public %></pre></dd>
+    <dt class="label label-default">Is Public?</dt>
+    <dd><pre class="prettyprint"><%= @post.is_public %></pre></dd>
   </dl>
 </div>

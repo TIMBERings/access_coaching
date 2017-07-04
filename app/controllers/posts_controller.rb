@@ -12,12 +12,13 @@ class PostsController < ApplicationController
   # GET /posts/1
   # GET /posts/1.json
   def show
-    @comment = Comment.new(post: @post, author: User.first)
+    @comment = Comment.new(post: @post, author: current_user)
   end
 
   # GET /posts/new
   def new
     @post = Post.new
+    @post.videos.build
   end
 
   # GET /posts/1/edit
@@ -31,6 +32,9 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
+        video_params.each do |v|
+          Video.create(post: @post, url: v[:url])
+        end
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
@@ -68,18 +72,22 @@ class PostsController < ApplicationController
   #->Prelang (voting/acts_as_votable)
   def vote
     direction = params[:direction]
-    @post.cast_vote(direction, User.first)
+    @post.cast_vote(direction, )
     redirect_to :back
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def post_params
-      params.require(:post).permit(:content, :is_public, :user_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def post_params
+    params.require(:post).permit(:content, :is_public, :author_id, video_attributes: [ :url ])
+  end
+
+  def video_params
+    params.require(:post).require(:videos).permit(:url)
+  end
 end

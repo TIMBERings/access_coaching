@@ -20,6 +20,8 @@ class User < ActiveRecord::Base
   validates :last_name, presence: true
   validates :role, presence: true
 
+  delegate :can?, :cannot?, :to => :ability
+
   def self.find_for_facebook_oauth(auth, signed_in_resource=nil)
     user = User.where(provider: auth.provider, uid: auth.uid).first
 
@@ -53,5 +55,9 @@ class User < ActiveRecord::Base
 
   def athlete?
     role == 'athlete'
+  end
+
+  def ability
+    @ability ||= Ability.new(self)
   end
 end

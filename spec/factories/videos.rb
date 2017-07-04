@@ -1,5 +1,6 @@
 FactoryGirl.define do
   factory :video do
-    post nil
+    post
+    url { Faker::Internet.url('example.com') }
   end
 end

@@ -3,6 +3,8 @@
   <h1><%=t '.title', :default => Post %></h1>
 </div>
 
+<h2> Sport: <%= @post.sport.name %> </h2>
+
 <%= render partial: 'post' %>
 
 <h3>Comments</h3>

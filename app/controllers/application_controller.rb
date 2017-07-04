@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   private
-  
+
   #-> Prelang (user_login:devise)
   def require_user_signed_in
     unless user_signed_in?
@@ -21,6 +21,10 @@ class ApplicationController < ActionController::Base
 
       redirect_to fallback_redirect, flash: {error: "You must be signed in to view this page."}
     end
+  end
+
+  def current_ability
+    current_user.ability
   end
 
 end

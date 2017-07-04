@@ -62,7 +62,7 @@ class CommentsController < ApplicationController
   #->Prelang (voting/acts_as_votable)
   def vote
     direction = params[:direction]
-    @comment.cast_vote(direction, User.first)
+    @comment.cast_vote(direction, current_user)
     redirect_to :back
   end
 

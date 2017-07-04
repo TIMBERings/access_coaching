@@ -51,7 +51,7 @@ gem 'acts_as_votable', github: 'ryanto/acts_as_votable'
 gem 'validates_formatting_of'
 gem 'tzinfo-data'
 gem 'cancancan'
-
+gem 'youtube_addy'
 group :development, :test do
   gem 'dotenv-rails'
   gem 'rspec-rails'

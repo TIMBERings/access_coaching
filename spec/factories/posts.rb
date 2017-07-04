@@ -4,5 +4,6 @@ FactoryGirl.define do
     is_public true
     author
     sport
+    title { Faker::HarryPotter.quote }
   end
 end
