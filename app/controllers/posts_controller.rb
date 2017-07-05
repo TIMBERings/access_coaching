@@ -13,6 +13,7 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @comment = Comment.new(post: @post, author: current_user)
+    @post.viewed_by(current_user)
   end
 
   # GET /posts/new
@@ -68,11 +69,10 @@ class PostsController < ApplicationController
     end
   end
 
-
   #->Prelang (voting/acts_as_votable)
   def vote
     direction = params[:direction]
-    @post.cast_vote(direction, )
+    @post.cast_vote(direction, current_user)
     redirect_to :back
   end
 
@@ -84,7 +84,7 @@ class PostsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def post_params
-    params.require(:post).permit(:content, :is_public, :author_id, video_attributes: [ :video_id ])
+    params.require(:post).permit(:content, :is_public, :sport_id, :title, :author_id, video_attributes: [ :video_id ])
   end
 
   def video_params

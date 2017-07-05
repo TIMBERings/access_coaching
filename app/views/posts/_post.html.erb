@@ -1,14 +1,9 @@
 <div class='panel panel-default'>
-  <div class='panel-heading'>
-    <div class='panel-title'>
-      <%= @post.title %>
-    </div>
-  </div>
   <div class='panel-body'>
     <%= @post.content %>
   </div>
   <div class='panel-footer'>
-    <div class='row'>
+    <div class='row vcenter'>
       <div class='col-xs-6'>
         <%= @post.author.full_name %>
       </div>
@@ -28,14 +23,14 @@
   <div class='row'>
     <% if @post.videos.count == 2 %>
       <div class='col-md-6 text-center'>
-        <iframe src='https://www.youtube.com/embed/<%= @post.videos[0].url %>?rel=0&autoplay=0' frameborder='0' allowfullscreen></iframe>
+        <iframe src='https://www.youtube.com/embed/<%= @post.videos[0].video_id %>?rel=0&autoplay=0' frameborder='0' allowfullscreen></iframe>
       </div>
       <div class='col-md-6 text-center'>
-        <iframe src='https://www.youtube.com/embed/<%= @post.videos[1].url %>?rel=0&autoplay=0' frameborder='0' allowfullscreen></iframe>
+        <iframe src='https://www.youtube.com/embed/<%= @post.videos[1].video_id %>?rel=0&autoplay=0' frameborder='0' allowfullscreen></iframe>
       </div>
     <% elsif @post.videos.count == 1 %>
       <div class='text-center'>
-        <iframe src='https://www.youtube.com/embed/<%= @post.videos[0].url %>?rel=0&autoplay=0' frameborder='0' allowfullscreen></iframe>
+        <iframe src='https://www.youtube.com/embed/<%= @post.videos[0].video_id %>?rel=0&autoplay=0' frameborder='0' allowfullscreen></iframe>
       </div>
     <% end %>
   </div>

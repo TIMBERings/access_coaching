@@ -1,9 +1,9 @@
 <%- model_class = Post -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => Post %></h1>
+  <h3><%= @post.title %></h1>
 </div>
 
-<h2> Sport: <%= @post.sport.name %> </h2>
+<h4> <%= @post.sport.name.capitalize %> </h2>
 
 <%= render partial: 'post' %>
 

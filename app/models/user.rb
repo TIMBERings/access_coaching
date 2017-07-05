@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
   #->Prelang (user_login/devise)
   has_many :post, foreign_key: "author_id"
   has_many :comment, foreign_key: "author_id"
+  has_many :post_views
   has_many :sports_users
   has_many :sports, through: :sports_users
 

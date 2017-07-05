@@ -2,6 +2,11 @@
   <%= f.error_notification %>
   <%= hidden_field_tag('post[author_id]', current_user.id) %>
   <div class="form-inputs">
+    <%= f.input :title %>
+    <div class='form-group'>
+      <%= f.label 'Sport' %>
+      <%= f.input :sport_id, label: false, collection: current_user.sports.map {|s| [s.name, s.id]} %>
+    </div>
     <%= f.input :content %>
     <%= f.input :is_public, label: 'Is this post public?', class: 'checkbox' %>
     <div class='form-group'>

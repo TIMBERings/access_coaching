@@ -51,6 +51,11 @@ a:active .vote-arrow.voted-for {
     color: $brand-warning;
 }
 
+.vcenter {
+    display: flex;
+    align-items: center;
+}
+
 @font-face {
   font-family: 'Glyphicons Halflings';
   src: url('/assets/glyphicons-halflings-regular.eot');
