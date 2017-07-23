@@ -2,7 +2,7 @@
   <h1><%=t ".title", default: "Login" %></h1>
 </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "form-horizontal form-user"}) do |f| %>                                                                                                                                      
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: "form-horizontal form-user"}) do |f| %>
   <div class="form-group">
     <%= f.label :email, class: "control-label col-md-4" %>
     <div class="col-md-8">

@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20170705032419) do
   end
 
   add_index "posts", ["author_id"], name: "index_posts_on_author_id", using: :btree
+  add_index "posts", ["sport_id"], name: "index_posts_on_sport_id", using: :btree
 
   create_table "sports", force: :cascade do |t|
     t.text     "name"
@@ -102,7 +103,7 @@ ActiveRecord::Schema.define(version: 20170705032419) do
     t.integer  "post_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "video_id",   null: false
+    t.string   "serial",     null: false
   end
 
   add_index "videos", ["post_id"], name: "index_videos_on_post_id", using: :btree
