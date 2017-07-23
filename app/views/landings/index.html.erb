@@ -1,12 +1,12 @@
 <h1>Welcome</h1>
 <% unless user_signed_in? %>
-  <%= render partial: 'guest' %>
+  <%= render 'guest', own_posts: @own_posts, commented_on_posts: @commented_on_posts, empty_posts: @empty_posts %>
 <% end %>
 
 <% if current_user&.coach? %>
-  <%= render partial: 'coach' %>
+  <%= render 'coach', own_posts: @own_posts, commented_on_posts: @commented_on_posts, empty_posts: @empty_posts %>
 <% end %>
 
 <% if current_user&.athlete? %>
-  <%= render partial: 'athlete' %>
+  <%= render 'athlete', own_posts: @own_posts, commented_on_posts: @commented_on_posts, empty_posts: @empty_posts  %>
 <% end %>

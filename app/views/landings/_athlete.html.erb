@@ -1,4 +1,4 @@
 <%= link_to('New Post', new_post_path, class: 'btn btn-default') %>
 
-<%= render partial: 'posts', :locals => {title: 'Your Posts', posts: @own_posts, comment: 'You have no posts', callout: true} %>
-<%= render partial: 'posts', :locals => {title: "Posts you've commented on", posts: @commented_on_posts, comment: 'You have not commented on any posts', callout: true} %>
+<%= render 'posts', title: 'Your Posts', posts: own_posts, comment: 'You have no posts', callout: true %>
+<%= render 'posts', title: "Posts you've commented on", posts: commented_on_posts, comment: 'You have not commented on any posts', callout: true %>

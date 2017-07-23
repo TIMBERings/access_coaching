@@ -4,6 +4,6 @@ class PostView < ActiveRecord::Base
 
   validates :user_id, presence: true, numericality: { only_integer: true }
   validates :post_id, presence: true, numericality: { only_integer: true }
-  validates :last_accessed, presence: true
+  validates :last_accessed_at, presence: true
   validates :occurrences, presence: true, numericality: { only_integer: true }
 end

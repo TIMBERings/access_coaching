@@ -30,9 +30,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
   end
 
-  def edit
-    super
-  end
+  # def edit
+  #   super
+  # end
 
   def sign_up_params
     params.require(:user).permit(:email, :password, :password_confirmation,

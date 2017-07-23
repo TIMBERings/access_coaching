@@ -3,9 +3,9 @@ class LandingsController < ApplicationController
     if current_user&.admin?
       @posts = Post.all
     elsif current_user&.coach? || current_user&.athlete?
-      @own_posts = Post.by_sport(current_user.sports).where(author: current_user).flatten.uniq
-      @commented_on_posts = Comment.where(author: current_user).map {|c| c.post if c.post.author != current_user}.flatten.compact.uniq
-      @empty_posts = Post.by_sport(current_user.sports).select {|p| p.comments.size == 0 && p.author_id != current_user.id}
+      @own_posts = Post.by_sport(current_user.sports).current_users.flatten.uniq
+      @commented_on_posts = Post.commented_on_by_user(current_user)
+      @empty_posts = other_owners_posts_without_comments(current_user)
       @other_posts
     end
   end

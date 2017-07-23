@@ -1,0 +1,7 @@
+<%= link_to(post_path(post.id), type: 'button', class: "list-group-item #{'list-group-item-info' if callout && changed_since_last_accessed(post, current_user)}")  do%>
+  <%= formatted_date(post.created_at) %> |
+  <%= post.title %>
+  <% if callout && changed_since_last_accessed(post, current_user)%>
+    <span class='badge'>NEW</span>
+  <% end %>
+<% end %>

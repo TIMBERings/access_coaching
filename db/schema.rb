@@ -27,23 +27,26 @@ ActiveRecord::Schema.define(version: 20170705032419) do
   add_index "comments", ["author_id"], name: "index_comments_on_author_id", using: :btree
   add_index "comments", ["post_id"], name: "index_comments_on_post_id", using: :btree
 
-  create_table "post_views", id: false, force: :cascade do |t|
-    t.integer  "user_id",                   null: false
-    t.integer  "post_id",                   null: false
-    t.datetime "last_accessed",             null: false
-    t.integer  "occurrences",   default: 0, null: false
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+  create_table "post_views", force: :cascade do |t|
+    t.integer  "user_id",                      null: false
+    t.integer  "post_id",                      null: false
+    t.datetime "last_accessed_at",             null: false
+    t.integer  "occurrences",      default: 0, null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
+  add_index "post_views", ["post_id"], name: "index_post_views_on_post_id", using: :btree
+  add_index "post_views", ["user_id"], name: "index_post_views_on_user_id", using: :btree
+
   create_table "posts", force: :cascade do |t|
-    t.text     "content",                    null: false
-    t.boolean  "is_public",  default: false
-    t.integer  "author_id",                  null: false
+    t.text     "content",                   null: false
+    t.boolean  "is_public",  default: true
+    t.integer  "author_id",                 null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "sport_id"
-    t.string   "title",                      null: false
+    t.string   "title",                     null: false
   end
 
   add_index "posts", ["author_id"], name: "index_posts_on_author_id", using: :btree

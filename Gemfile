@@ -40,14 +40,14 @@ gem 'spring',        group: :development
 
 gem 'bundler'
 gem 'glyphicons-rails'
-gem 'devise', github: 'plataformatec/devise'
+gem 'devise'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'binding_of_caller'
 gem 'simple_form'
 gem 'bootstrap-sass', '3.3.5'
 gem 'bootstrap-sass-extras'
-gem 'acts_as_votable', github: 'ryanto/acts_as_votable'
+gem 'acts_as_votable'
 gem 'validates_formatting_of'
 gem 'tzinfo-data'
 gem 'cancancan'
@@ -65,6 +65,7 @@ group :development do
   gem 'pry-rails'
   gem 'better_errors'
   gem 'web-console'
+  gem 'rails_best_practices'
 end
 
 group :test do

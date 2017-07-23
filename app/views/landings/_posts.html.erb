@@ -1,17 +1,10 @@
 <h3><%= title %></h3>
 <% if posts.any? %>
-  <div class="table-responsive">
-    <table class="table table-bordered">
-      <% posts.each do |post| %>
-        <tr class='<%= 'info' if callout && changed_since_last_accessed(post, current_user)%>'>
-          <td><%= formatted_date(post.created_at) %></td>
-          <td>
-            <%= link_to(post.title, post_path(post.id)) %>
-          </td>
-        </tr>
-      <% end %>
-    </table>
-  </div>
+  <ul class='list-group'>
+    <% posts.each do |post| %>
+      <%= render 'post', post: post, callout: callout %>
+    <% end %>
+  </ul>
 <% else %>
   <p><%= comment %></p>
 <% end %>

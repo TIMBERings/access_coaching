@@ -3,6 +3,6 @@ FactoryGirl.define do
     user
     post
     occurrences 0
-    last_accessed { 2.days.ago }
+    last_accessed_at { 2.days.ago }
   end
 end

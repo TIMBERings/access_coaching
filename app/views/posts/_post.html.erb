@@ -1,43 +1,51 @@
 <div class='panel panel-default'>
   <div class='panel-body'>
-    <%= @post.content %>
+    <%= post.content %>
   </div>
   <div class='panel-footer'>
     <div class='row vcenter'>
       <div class='col-xs-6'>
-        <%= @post.author.full_name %>
+        <%= post.author.full_name %>
       </div>
       <div class='col-xs-6 text-right'>
-        <%= link_to vote_post_path(@post, {direction: 'liked'}) do %>
-          <%= content_tag(:span, '', class: "vote-arrow glyphicon glyphicon-arrow-up #{'voted-for' if (current_user.voted_for?(@post) && current_user.voted_as_when_voted_for(@post))}", 'aria-hidden' => "true") %>
+        <%= link_to vote_post_path(post, {direction: 'liked'}) do %>
+          <%= content_tag(:span, '', class: "vote-arrow glyphicon glyphicon-arrow-up #{'voted-for' if (current_user.voted_for?(post) && current_user.voted_as_when_voted_for(post))}", 'aria-hidden' => "true") %>
         <% end %>
-        <strong class='large-text'><%= @post.total_votes %></strong>
-        <%= link_to vote_post_path(@post, {direction: 'disliked'}) do %>
-          <%= content_tag(:span, '', class: "vote-arrow glyphicon glyphicon-arrow-down #{'voted-for' if (current_user.voted_for?(@post) && !current_user.voted_as_when_voted_for(@post))}", 'aria-hidden' => "true") %>
+        <strong class='large-text'><%= post.total_votes %></strong>
+        <%= link_to vote_post_path(post, {direction: 'disliked'}) do %>
+          <%= content_tag(:span, '', class: "vote-arrow glyphicon glyphicon-arrow-down #{'voted-for' if (current_user.voted_for?(post) && !current_user.voted_as_when_voted_for(post))}", 'aria-hidden' => "true") %>
         <% end %>
       </div>
     </div>
   </div>
 </div>
-<% if @post.videos.any? %>
+<% if post.videos.any? %>
   <div class='row'>
-    <% if @post.videos.count == 2 %>
+    <% if post.videos.count == 2 %>
       <div class='col-md-6 text-center'>
-        <iframe src='https://www.youtube.com/embed/<%= @post.videos[0].video_id %>?rel=0&autoplay=0' frameborder='0' allowfullscreen></iframe>
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src='https://www.youtube.com/embed/<%= post.videos[0].video_id %>?rel=0&autoplay=0' frameborder='0' allowfullscreen></iframe>
+        </div>
       </div>
       <div class='col-md-6 text-center'>
-        <iframe src='https://www.youtube.com/embed/<%= @post.videos[1].video_id %>?rel=0&autoplay=0' frameborder='0' allowfullscreen></iframe>
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src='https://www.youtube.com/embed/<%= post.videos[1].video_id %>?rel=0&autoplay=0' frameborder='0' allowfullscreen></iframe>
+        </div>
       </div>
-    <% elsif @post.videos.count == 1 %>
-      <div class='text-center'>
-        <iframe src='https://www.youtube.com/embed/<%= @post.videos[0].video_id %>?rel=0&autoplay=0' frameborder='0' allowfullscreen></iframe>
+    <% elsif post.videos.count == 1 %>
+      <div class='col-md-3'></div>
+      <div class='col-md-6 text-center'>
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe src='https://www.youtube.com/embed/<%= post.videos[0].video_id %>?rel=0&autoplay=0' frameborder='0' allowfullscreen></iframe>
+        </div>
       </div>
+      <div class='col-md-3'></div>
     <% end %>
   </div>
 <% end %>
 <div class="fieldset">
   <dl>
     <dt class="label label-default">Is Public?</dt>
-    <dd><pre class="prettyprint"><%= @post.is_public %></pre></dd>
+    <dd><pre class="prettyprint"><%= post.is_public %></pre></dd>
   </dl>
 </div>
